@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "6ebb409c-9ab8-4ffb-a5f4-39eb1c3a9710",
+		"name": "Meeting Room Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21097325"
+	},
+	"item": [
+		{
+			"name": "create room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"room1\",\r\n    \"capacity\": 15,\r\n    \"floor\": 2,\r\n    \"amenities\": [\r\n        \"TV\",\r\n        \"AC\",\r\n        \"TABLE\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list rooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/rooms?minCapacity=1&amenity=TV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"rooms"
+					],
+					"query": [
+						{
+							"key": "minCapacity",
+							"value": "1"
+						},
+						{
+							"key": "amenity",
+							"value": "TV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"roomId\": \"1\", \r\n    \"title\": \"New meeting\", \r\n    \"organizerEmail\": \"Abc@email.com\", \r\n    \"startTime\": \"2025-12-17T09:00:00Z\", \r\n    \"endTime\": \"2025-12-17T09:15:00Z\" \r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create booking idempotent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Idempotency-Key",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"roomId\": \"1\", \r\n    \"title\": \"New meeting\", \r\n    \"organizerEmail\": \"Abc@email.com\", \r\n    \"startTime\": \"2025-12-17T08:00:00Z\", \r\n    \"endTime\": \"2025-12-17T11:00:00Z\" \r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list bookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/bookings?limit=2&roomId=4&from=2025-10-06T10:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"bookings"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "roomId",
+							"value": "4"
+						},
+						{
+							"key": "from",
+							"value": "2025-10-06T10:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "booking cancel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/bookings/1/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"bookings",
+						"1",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "room utilization report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/reports/room-utilization?from=2025-12-17T09:00:00&to=2025-12-17T15:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"reports",
+						"room-utilization"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2025-12-17T09:00:00"
+						},
+						{
+							"key": "to",
+							"value": "2025-12-17T15:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
