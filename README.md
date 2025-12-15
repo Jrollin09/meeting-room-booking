@@ -18,8 +18,7 @@ A Flask-based REST API for managing meeting room bookings, built with PostgreSQL
    pip install -r requirements.txt
    ```
 3. **Database**:
-   Ensure Postgres is running on `localhost:5432` with user `postgres`, password `postgres`, and db `postgres`.
-   Or set `DATABASE_URL` environment variable.
+   Ensure Postgres is running and set `DATABASE_URL` environment variable. Make sure to create the database before running.
    
 ## Running the Application
 
