@@ -32,7 +32,7 @@ The server starts at `http://0.0.0.0:5000`.
 Tests are configured to use the Postgres database defined in `TEST_DATABASE_URL`.
 
 ```bash
-export TEST_DATABASE_URL="postgresql+psycopg://postgres:postgres@localhost:5432/postgres"
+export TEST_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
 pytest tests -v
 ```
 
