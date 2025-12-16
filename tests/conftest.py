@@ -1,6 +1,9 @@
 import pytest
 import os
 import psycopg
+from flask import Flask
+from dotenv import load_dotenv
+load_dotenv()
 from psycopg.rows import dict_row
 from app import app as flask_app
 from helpers.db import init_db
