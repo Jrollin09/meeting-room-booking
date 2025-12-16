@@ -1,9 +1,10 @@
 from dotenv import load_dotenv
 from flask import Flask
-from helpers.errors import register_error_handlers
-from helpers.db import init_db, Config
 
 load_dotenv()
+
+from helpers.errors import register_error_handlers
+from helpers.db import init_db, Config
 
 app = Flask(__name__)
 
